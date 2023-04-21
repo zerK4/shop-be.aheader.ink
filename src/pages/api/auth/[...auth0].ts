@@ -12,7 +12,7 @@ export default handleAuth({
           } = session;
           const user = await prisma.user.findUnique({
             where: {
-              sid: sub,
+              sid: sub as string,
             },
           });
           if (!user) {
