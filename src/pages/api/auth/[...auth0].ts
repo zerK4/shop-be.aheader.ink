@@ -10,7 +10,7 @@ export default handleAuth({
           const {
             user: { email, given_name, family_name, sub },
           } = session;
-          const user = await prisma.user.findUnique({
+          const user = await prisma.user.findFirst({
             where: {
               sid: sub as string,
             },
