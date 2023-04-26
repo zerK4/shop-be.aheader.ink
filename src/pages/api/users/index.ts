@@ -1,28 +1,29 @@
 import handler from '@/lib/handlers/routeHandler';
-import prisma from '@/lib/prismaFunctions/prisma';
+import { getCurrentUser } from '@/services/users/controller/readController';
+import { updateUserController } from '@/services/users/controller/updateController';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-export default handler.post(async (req, res) => {
-  const { email, sid } = req.body;
-  console.log(email, sid);
+export default withApiAuthRequired(
+  handler
+    .post(async (req, res) => {})
+    .get(async (req, res) => {
+      const {
+        query: { scope },
+      } = req;
 
-  try {
-    const data = await prisma.user.updateMany({
-      where: {
-        sid: sid,
-      },
-      data: {
-        email: email,
-      },
-    });
-    console.log(data, 'sadasd');
+      if (scope === 'current_user') {
+        await getCurrentUser(req, res);
+      }
+    })
+    .put(async (req, res) => {
+      const {
+        query: { scope },
+      } = req;
 
-    return res.status(200).send({
-      message: `Email address updated successfully!`,
-    });
-  } catch (err: any) {
-    console.log(err.message);
-    return res.status(500).send({
-      message: `Could not update email address! ${err.message}`,
-    });
-  }
-});
+      if (scope === 'update_current_user') {
+        await updateUserController(req, res);
+      }
+    })
+);
+
+//kjads hba

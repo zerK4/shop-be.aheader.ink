@@ -1,34 +1,24 @@
-import prisma from '@/lib/prismaFunctions/prisma';
-import { handleAuth, handleCallback } from '@auth0/nextjs-auth0';
+import { createAfterLogin } from '@/services/users/services/createService';
+import { getUserBySid } from '@/services/users/services/readService';
+import { handleAuth, handleCallback, handleLogin } from '@auth0/nextjs-auth0';
 
 export default handleAuth({
+  async login(req, res) {
+    await handleLogin(req, res, {
+      returnTo: '/checks',
+    });
+  },
   async callback(req, res) {
     try {
       await handleCallback(req, res, {
         async afterCallback(req, res, session) {
-          console.log(session.user);
-          const {
-            user: { email, given_name, family_name, sub },
-          } = session;
-          const user = await prisma.user.findFirst({
-            where: {
-              sid: sub as string,
-            },
-          });
-          if (!user) {
-            const data = await prisma.user.create({
-              data: {
-                email: email ? email : '',
-                firstName: given_name,
-                lastName: family_name,
-                sid: sub,
-              },
-            });
-            console.log(data, 'new user');
+          console.log('something here');
+
+          const { user } = session;
+          const { data } = await getUserBySid(user);
+          if (!data) {
+            await createAfterLogin(user);
           }
-
-          console.log(user, 'session hit');
-
           return session;
         },
       });
