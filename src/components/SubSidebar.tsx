@@ -23,12 +23,12 @@ function SubSidebar() {
       </div>
       <ul>
         {subLinks?.map((link, i) => (
-          <Link key={i} href={link.link as string}>
+          <Link key={i} href={link.link as string} legacyBehavior>
             <li
               onClick={() =>
                 globalStore.setState({ subSidebarLeftActive: false })
               }
-              className="p-2 hover:bg-gray-100 ease-in-out duration-300"
+              className="p-2 hover:bg-gray-100 ease-in-out duration-300 cursor-pointer"
             >
               {link.name}
             </li>

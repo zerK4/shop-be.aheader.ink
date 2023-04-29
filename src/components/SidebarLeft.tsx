@@ -42,7 +42,12 @@ const SidebarLeft = () => {
         <SubSidebar />
         <ul className={'flex flex-col gap-2'}>
           {navLinks.map((link, i) => (
-            <Link href={link.link as string} key={i}>
+            <Link
+              href={link.link as string}
+              key={i}
+              legacyBehavior
+              className="cursor-pointer"
+            >
               <li
                 onClick={(e) => {
                   e.stopPropagation(),
@@ -55,7 +60,7 @@ const SidebarLeft = () => {
                 }}
                 className={`p-2 flex items-center ${
                   sidebarLeftActive ? 'gap-2' : 'justify-center'
-                } hover:bg-slate-100 p-2 ease-in-out duration-300 rounded-sm py-4`}
+                } hover:bg-slate-100 p-2 ease-in-out duration-300 rounded-sm py-4 cursor-pointer`}
               >
                 <button className={'text-xl'}>{link.icon}</button>
                 <motion.span
