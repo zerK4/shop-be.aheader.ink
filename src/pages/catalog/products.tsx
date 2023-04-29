@@ -7,23 +7,14 @@ import axios from 'axios';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-function Products({ data }: CoreConfigData) {
+function Products({ data }: any) {
   const { newProductActive } = globalStore();
   const [products, setProducts] = useState([]);
 
-  const getData = async () => {
-    const { data } = await axios({
-      method: 'GET',
-      url: `/api/products`,
-    });
-    console.log(data, 'asdubatyu');
-    setProducts(data.data);
-  };
-
   useEffect(() => {
-    globalStore.setState({ currentPage: data });
-    getData();
+    setProducts(data);
   }, [data]);
+
   return (
     <div>
       {renderPageHeader({
@@ -45,6 +36,19 @@ function Products({ data }: CoreConfigData) {
 
 Products.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
+};
+
+export const getServerSideProps = async () => {
+  const { data } = await axios({
+    method: 'GET',
+    url: `${process.env.BASE_URL}/api/products`,
+  });
+
+  return {
+    props: {
+      data: data.data,
+    },
+  };
 };
 
 export default Products;
