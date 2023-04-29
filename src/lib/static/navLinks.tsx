@@ -1,48 +1,74 @@
-import { AiFillHome } from 'react-icons/ai';
-import {
-  BsFillCalendarEventFill,
-  BsFillTicketPerforatedFill,
-} from 'react-icons/bs';
+import { GrCatalogOption, GrProductHunt } from 'react-icons/gr';
 import { RiDashboardFill } from 'react-icons/ri';
-import { HiUserGroup } from 'react-icons/hi';
-import { Url } from 'next/dist/shared/lib/router/router';
+import { GiPayMoney } from 'react-icons/gi';
+import { IoIosAnalytics, IoIosPeople } from 'react-icons/io';
+import { BiCategoryAlt } from 'react-icons/bi';
+import { BsGear } from 'react-icons/bs';
 
 export const navLinks = [
   {
-    name: 'Home',
-    icon: <AiFillHome />,
-    link: '/',
-    logged: false,
-    sidebarLeft: false,
-  },
-  {
     name: 'Dashboard',
     icon: <RiDashboardFill />,
-    link: (id: string) => {
-      return `/dashboard/${id}` as Url;
-    },
-    logged: false,
-    sidebarLeft: true,
+    link: '/dashboard',
+    subSidebar: false,
   },
   {
-    name: 'Events',
-    icon: <BsFillCalendarEventFill />,
-    link: '/events',
-    logged: false,
-    sidebarLeft: false,
+    name: 'Analytics',
+    icon: <IoIosAnalytics />,
+    link: '/dashboard/analytics',
+    subSidebar: false,
   },
   {
-    name: 'Tickets',
-    icon: <BsFillTicketPerforatedFill />,
-    link: '/tickets',
-    logged: true,
-    sidebarLeft: false,
+    name: 'Catalog',
+    icon: <GrCatalogOption />,
+    link: '#',
+    subSidebar: true,
+    subLinks: [
+      {
+        name: 'Products',
+        icon: <GrProductHunt />,
+        link: '/catalog/products',
+      },
+      {
+        name: 'Categories',
+        icon: <BiCategoryAlt />,
+        link: '/catalog/categories',
+      },
+    ],
   },
   {
-    name: 'Persons',
-    icon: <HiUserGroup />,
-    link: '/persons',
-    logged: true,
-    sidebarLeft: false,
+    name: 'Sales',
+    icon: <GiPayMoney />,
+    link: '/orders',
+    subSidebar: false,
+  },
+  {
+    name: 'Customers',
+    icon: <IoIosPeople />,
+    link: '/customers',
+    subSidebar: false,
+  },
+  {
+    name: 'System',
+    icon: <BsGear />,
+    link: '#',
+    subSidebar: true,
+    subLinks: [
+      {
+        name: 'Store',
+        icon: <GrProductHunt />,
+        link: '#',
+      },
+      {
+        name: 'Preferences',
+        icon: <BiCategoryAlt />,
+        link: '#',
+      },
+      {
+        name: 'Pages',
+        icon: <BiCategoryAlt />,
+        link: '#',
+      },
+    ],
   },
 ];

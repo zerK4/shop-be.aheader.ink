@@ -9,14 +9,12 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  email         String
-  firstName     String
-  lastName      String
-  sid           String         @unique
-  role          UserRole?      @default(USER)
-  events        Event[]
-  registrations Registration[]
+  id        String    @id @default(cuid())
+  email     String
+  firstName String
+  lastName  String
+  sid       String    @unique
+  role      UserRole? @default(USER)
 }
 
 enum UserRole {
@@ -25,46 +23,28 @@ enum UserRole {
   USER
 }
 
-model Event {
-  id          String   @id @default(cuid())
-  title       String
+model CoreConfigData {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  protocol String?
+  base     String?
+  url      String?
+  path     String?
+  value    String?
+  redirect String?
+}
+
+model Product {
+  id          String @id @default(cuid())
+  name        String
   description String
-  startDate   DateTime
-  endDate     DateTime
-  location    String
-  coverImage  String?
-  organizerId String
-  organizer   User     @relation(fields: [organizerId], references: [id])
-  tickets     Ticket[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([organizerId])
+  price       String
+  attributes  String
+  categories  String
 }
 
-model Ticket {
-  id           String         @id @default(cuid())
-  type         String
-  price        Float
-  quantity     Int
-  eventId      String
-  event        Event          @relation(fields: [eventId], references: [id])
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  Registration Registration[]
-
-  @@index([eventId])
-}
-
-model Registration {
-  id         String   @id @default(cuid())
-  attendeeId String
-  attendee   User     @relation(fields: [attendeeId], references: [id])
-  ticket     Ticket   @relation(fields: [ticketId], references: [id])
-  ticketId   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@index([ticketId])
-  @@index([attendeeId])
+model Attribute {
+  id    String @id @default(cuid())
+  name  String
+  value String
 }

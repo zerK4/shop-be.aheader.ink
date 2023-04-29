@@ -5,15 +5,15 @@ import React, { useEffect } from 'react';
 
 function Checks({ session, hasEmail }: any) {
   console.log(session, ';asdad');
-  const { addToLocalStorage, removeFromLocalStorage } = globalStore();
+  // const { addToLocalStorage, removeFromLocalStorage } = globalStore();
   const router = useRouter();
 
   useEffect(() => {
-    !hasEmail
-      ? addToLocalStorage('noEmail', true)
-      : removeFromLocalStorage('noEmail');
+    // !hasEmail
+    //   ? addToLocalStorage('noEmail', true)
+    //   : removeFromLocalStorage('noEmail');
 
-    router.push('/').then(r => console.log('Hit'));
+    router.push('/');
   }, [session, hasEmail]);
 
   return (
