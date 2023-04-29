@@ -1,5 +1,3 @@
-import { createAfterLogin } from '@/services/users/services/createService';
-import { getUserBySid } from '@/services/users/services/readService';
 import { handleAuth, handleCallback, handleLogin } from '@auth0/nextjs-auth0';
 
 export default handleAuth({
@@ -12,13 +10,6 @@ export default handleAuth({
     try {
       await handleCallback(req, res, {
         async afterCallback(req, res, session) {
-          console.log('something here');
-
-          const { user } = session;
-          const { data } = await getUserBySid(user);
-          if (!data) {
-            await createAfterLogin(user);
-          }
           return session;
         },
       });
