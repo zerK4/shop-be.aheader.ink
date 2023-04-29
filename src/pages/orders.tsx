@@ -13,6 +13,7 @@ function Orders({ data }: CoreConfigData) {
   return (
     <div>
       {renderPageHeader({
+        pageTitle: 'Orders',
         defaultButton: {
           action: () => {},
           title: 'New order',

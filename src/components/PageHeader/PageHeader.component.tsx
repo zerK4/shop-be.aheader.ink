@@ -6,6 +6,7 @@ import ExportButton, { EButton } from '../Buttons/ExportButton';
 import DefaultButton from '../Buttons/DefaultButton';
 
 export interface RPageHeader {
+  pageTitle: string;
   hasTimePeriod?: boolean;
   exportButton?: EButton | undefined;
   defaultButton?: EButton | undefined;
@@ -13,6 +14,7 @@ export interface RPageHeader {
 
 function PageHeader(props: RPageHeader) {
   const {
+    pageTitle = '',
     hasTimePeriod = false,
     exportButton: { title = '', active = false, action = null } = {},
     defaultButton: {
@@ -26,9 +28,7 @@ function PageHeader(props: RPageHeader) {
 
   return (
     <div className="flex justify-between h-20 items-center">
-      <h2 className="text-2xl">
-        {capitalizeFirstLetter(currentPage?.name as string)}
-      </h2>
+      <h2 className="text-2xl">{pageTitle}</h2>
       <div
         onClick={(e) => e.stopPropagation()}
         className="flex items-center gap-2"
@@ -51,6 +51,7 @@ function PageHeader(props: RPageHeader) {
 
 export const renderPageHeader = (data: RPageHeader) => {
   const {
+    pageTitle = '',
     hasTimePeriod = false,
     exportButton = undefined,
     defaultButton = undefined,
@@ -58,6 +59,7 @@ export const renderPageHeader = (data: RPageHeader) => {
 
   return (
     <PageHeader
+      pageTitle={pageTitle}
       hasTimePeriod={hasTimePeriod}
       exportButton={exportButton}
       defaultButton={defaultButton}

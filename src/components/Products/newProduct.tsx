@@ -42,7 +42,7 @@ function NewProduct() {
       onClick={(e) => e.stopPropagation()}
       variants={productVariant}
       animate={newProductActive ? 'visible' : 'hidden'}
-      className="absolute right-0 bg-white shadow-md shadow-gray-300 h-fit max-w-[20rem] md:max-w-[40rem] border border-gray-200"
+      className="absolute top-40 right-0 bg-white shadow-md shadow-gray-300 h-fit max-w-[20rem] md:max-w-[40rem] border border-gray-200"
     >
       {newProductActive && (
         <div className="">

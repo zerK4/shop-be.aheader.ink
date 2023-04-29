@@ -15,7 +15,7 @@ function SubSidebar() {
       onClick={(e) => e.stopPropagation()}
       variants={subSidebarLeftVariant}
       animate={subSidebarLeftActive ? 'visible' : 'hidden'}
-      className="bg-white shadow-md shadow-gray-500 rounded-sm absolute overflow-hidden py-2 pb-4 border border-gray-200"
+      className="bg-white shadow-md shadow-gray-500 rounded-sm absolute overflow-hidden py-2 pb-4 border border-gray-200 z-20"
     >
       <div className="flex justify-between items-center p-2 pr-4 border-b-2 pb-4 mb-2">
         <h2 className="text-xl">{name}</h2>

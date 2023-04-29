@@ -13,6 +13,7 @@ function Customers({ data }: CoreConfigData) {
   return (
     <div>
       {renderPageHeader({
+        pageTitle: 'Customers',
         defaultButton: {
           action: () => {},
           title: 'New customer',
