@@ -42,7 +42,7 @@ const SidebarLeft = () => {
         <SubSidebar />
         <ul className={'flex flex-col gap-2'}>
           {navLinks.map((link, i) => (
-            <Link href={link.link} key={i}>
+            <Link href={link.link as string} key={i}>
               <li
                 onClick={(e) => {
                   e.stopPropagation(),
