@@ -34,7 +34,7 @@ export const getServerSideProps = async ({ req, query, resolvedUrl }: any) => {
 
   const { data } = await axios({
     method: 'GET',
-    url: `http://localhost:3000/api/coreConfig?url=${resolvedUrl}&protocol=${protocol}&host=${host}`,
+    url: `${process.env.BASE_URL}/api/coreConfig?url=${resolvedUrl}&protocol=${protocol}&host=${host}`,
   });
 
   return {
