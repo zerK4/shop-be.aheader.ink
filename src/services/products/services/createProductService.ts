@@ -1,7 +1,7 @@
 import prisma from '@/lib/prismaFunctions/prisma';
 
 export const createProductService = async (product: any) => {
-  const { name, price, description, attributes, categories } = product;
+  const { name, price, description, attributes, categories, tax, taxPercent, salePrice } = product;
   try {
     const data = await prisma.product.create({
       data: {
@@ -9,9 +9,12 @@ export const createProductService = async (product: any) => {
         description: description,
         price: price,
         attributes: attributes,
-        categories: categories
-      }
-    })
+        categories: categories,
+        salePrice: salePrice,
+        tax: tax,
+        taxPercent: taxPercent,
+      },
+    });
     return {
       message: 'Product created successfully!',
       data: data,
@@ -19,7 +22,7 @@ export const createProductService = async (product: any) => {
     };
   } catch (err: any) {
     console.log(err.message);
-    
+
     return {
       message: 'Could not create the product!',
       data: err,

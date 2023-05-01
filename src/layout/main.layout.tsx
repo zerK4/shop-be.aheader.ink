@@ -1,7 +1,9 @@
+import CreateCategoryComponent from '@/components/Category/CreateCategoryComponent';
 import Header from '@/components/Header';
-import NewProduct from '@/components/Products/newProduct';
 import SidebarLeft from '@/components/SidebarLeft';
 import globalStore from '@/store/globalStore';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MainLayout({ children }: any) {
   const disableAll = () => {
@@ -10,19 +12,31 @@ function MainLayout({ children }: any) {
       timePeriodOpen: false,
       projectsDropDownActive: false,
       sidebarLeftActive: false,
-      newProductActive: false,
     });
   };
 
   return (
     <div onClick={disableAll} className="relative">
-      <div className="flex gap-2">
+      <div className="flex">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+
         <SidebarLeft />
-        <div className={'p-2 w-full'}>
+        <div className={'p-2 w-full flex flex-col gap-2 bg-gray-200'}>
           <Header />
           <main className="w-full">{children}</main>
-          <NewProduct />
         </div>
+        <CreateCategoryComponent />
       </div>
     </div>
   );

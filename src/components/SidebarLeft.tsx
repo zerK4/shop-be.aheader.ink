@@ -16,7 +16,7 @@ const SidebarLeft = () => {
     <motion.div
       variants={sidebarLeftVariant}
       animate={sidebarLeftActive ? 'visible' : 'hidden'}
-      className={'p-2 w-20 border-r-2 h-screen relative'}
+      className={'p-2 w-20 border-r-2 h-screen relative shadow-md'}
     >
       <button
         onClick={(e) => {

@@ -2,24 +2,30 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { createCoreConfigService } from '../services/createService';
 
 export const createCoreConfig = async (
-    req: NextApiRequest,
-    res: NextApiResponse
+  req: NextApiRequest,
+  res: NextApiResponse
 ) => {
-    const { query, query: { protocol, host }} = req;
-    const url: string = query.url as string;
-    
-    const up = url.split('/');
-    const name = up[up.length - 1];
+  const {
+    query,
+    query: { protocol, host },
+  } = req;
+  const url: string = query.url as string;
 
-    const sss = {
-        name, host, url, protocol
-    }
+  const up = url.split('/');
+  const name = up[up.length - 1];
 
-    const { message, data, status } = await createCoreConfigService(sss);
+  const sss = {
+    name,
+    host,
+    url,
+    protocol,
+  };
 
-    return res.status(200).send({
-        message: message,
-        data: data,
-        status: status,
-    });
+  const { message, data, status } = await createCoreConfigService(sss);
+
+  return res.status(200).send({
+    message: message,
+    data: data,
+    status: status,
+  });
 };

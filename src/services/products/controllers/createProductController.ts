@@ -8,6 +8,8 @@ export const createProductController = async (
   const { message, data, status } = await createProductService(req.body);
 
   return res.status(status).send({
-    message, data, status
+    message,
+    data,
+    status,
   });
 };

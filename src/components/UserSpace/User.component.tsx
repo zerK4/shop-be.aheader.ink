@@ -1,5 +1,5 @@
 import { useUser } from '@auth0/nextjs-auth0/client';
-import {getInitials} from "@/utils/utils";
+import { getInitials } from '@/utils/utils';
 
 const UserComponent = () => {
   const { user, isLoading } = useUser();

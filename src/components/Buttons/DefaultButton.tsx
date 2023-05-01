@@ -1,16 +1,21 @@
 import React from 'react';
 import { EButton } from './ExportButton';
+import { Button } from '@mui/material';
 
 function DefaultButton(props: EButton) {
-  const { title, action, icon } = props;
+  const { title, action, icon, variant, loading } = props;
   return (
-    <button
+    <Button
       onClick={() => action()}
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-3 mr-2 mb-2 focus:outline-none flex items-center gap-2"
+      variant={variant}
+      style={{ textTransform: 'none' }}
+      className={`${
+        variant !== 'contained' ? 'p-2 text-black' : 'bg-blue-500 p-2'
+      } w-full h-fit`}
     >
       <span className="text-xl">{icon}</span>
       <span>{title}</span>
-    </button>
+    </Button>
   );
 }
 

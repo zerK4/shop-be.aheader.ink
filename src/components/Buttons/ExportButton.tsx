@@ -6,6 +6,8 @@ export interface EButton {
   title?: string;
   action?: any;
   icon?: any;
+  variant?: any;
+  loading?: boolean;
 }
 
 function ExportButton(props: EButton) {

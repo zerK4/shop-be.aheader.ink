@@ -6,7 +6,6 @@ import { CoreConfigData } from '@/types/default';
 import { renderPageHeader } from '@/components/PageHeader/PageHeader.component';
 
 const Analytics = ({ data }: CoreConfigData) => {
-  console.log(data);
   const { currentPage } = globalStore();
 
   useEffect(() => {

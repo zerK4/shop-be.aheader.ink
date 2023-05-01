@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getAllProducts } from '../services/readProductService';
+import { readAllCategoriesService } from '../services/readService';
 
-export const readProductController = async (
+export const readAllCategoriesController = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { message, data, status } = await getAllProducts();
+  const { message, data, status } = await readAllCategoriesService();
 
   return res.status(status).send({
     message,

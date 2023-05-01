@@ -10,11 +10,13 @@ export interface RPageHeader {
   hasTimePeriod?: boolean;
   exportButton?: EButton | undefined;
   defaultButton?: EButton | undefined;
+  pageSubTitle?: string;
 }
 
 function PageHeader(props: RPageHeader) {
   const {
     pageTitle = '',
+    pageSubTitle = '',
     hasTimePeriod = false,
     exportButton: { title = '', active = false, action = null } = {},
     defaultButton: {
@@ -27,8 +29,11 @@ function PageHeader(props: RPageHeader) {
   const { currentPage } = globalStore();
 
   return (
-    <div className="flex justify-between h-20 items-center">
-      <h2 className="text-2xl">{pageTitle}</h2>
+    <div className="flex justify-between h-20 items-center bg-white p-4 rounded-xl shadow-md border border-gray-300">
+      <div>
+        <h2 className="text-2xl">{pageTitle}</h2>
+        <h2 className="text-gray-400">{pageSubTitle}</h2>
+      </div>
       <div
         onClick={(e) => e.stopPropagation()}
         className="flex items-center gap-2"
@@ -41,6 +46,7 @@ function PageHeader(props: RPageHeader) {
           <DefaultButton
             title={addButtonTitle}
             action={() => addButtonAction()}
+            variant={'contained'}
             icon={icon}
           />
         )}
@@ -51,6 +57,7 @@ function PageHeader(props: RPageHeader) {
 
 export const renderPageHeader = (data: RPageHeader) => {
   const {
+    pageSubTitle = '',
     pageTitle = '',
     hasTimePeriod = false,
     exportButton = undefined,
@@ -59,6 +66,7 @@ export const renderPageHeader = (data: RPageHeader) => {
 
   return (
     <PageHeader
+      pageSubTitle={pageSubTitle}
       pageTitle={pageTitle}
       hasTimePeriod={hasTimePeriod}
       exportButton={exportButton}

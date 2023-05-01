@@ -35,16 +35,59 @@ model CoreConfigData {
 }
 
 model Product {
-  id          String @id @default(cuid())
-  name        String
-  description String
-  price       String
-  attributes  String
-  categories  String
+  id              String            @id @default(cuid())
+  metaTitle       String?
+  metaDescription String?
+  name            String?
+  description     String?
+  price           String?
+  salePrice       String?
+  tax             String?
+  taxPercent      String?
+  attributes      String?
+  categories      ProductCategory[]
+  published       Boolean?
+  visible         Boolean?
+  drafts          Draft[]
+}
+
+model Draft {
+  id        String   @id @default(cuid())
+  name      String?
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+}
+
+model Category {
+  id            String            @id @default(cuid())
+  name          String?
+  description   String?
+  productId     String?
+  products      ProductCategory[]
+  subCategories SubCategory[]
+
+  @@index([productId])
+}
+
+model ProductCategory {
+  id       String     @id @default(cuid())
+  product  Product[]
+  category Category[]
+}
+
+model SubCategory {
+  id         String    @id @default(cuid())
+  name       String?
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId])
 }
 
 model Attribute {
-  id    String @id @default(cuid())
-  name  String
-  value String
+  id    String  @id @default(cuid())
+  name  String?
+  value String?
 }

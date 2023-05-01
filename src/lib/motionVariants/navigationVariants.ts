@@ -55,4 +55,4 @@ export const subSidebarLeftVariant = {
       delay: 0.1,
     },
   },
-}
+};

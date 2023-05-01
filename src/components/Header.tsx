@@ -6,7 +6,7 @@ const Header = () => {
     <div
       onClick={(e) => e.stopPropagation()}
       className={
-        'border-b-2 w-full pr-2 py-2 h-16 flex items-center justify-between'
+        'w-full p-2 rounded-xl border border-gray-300 shadow-md h-16 flex items-center justify-between bg-white'
       }
     >
       <SearchBar />

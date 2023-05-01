@@ -10,7 +10,12 @@ export interface GlobalStore {
   selectedTimePeriod: string;
   subSidebarLeftActive: boolean;
   currentNavLinkData: SidebarSection;
-  newProductActive: boolean;
+  createCategoryActive: boolean;
+  apiResponse?: {
+    message?: string;
+    data?: any;
+    status?: boolean;
+  };
 }
 
 export const globalStore = create<GlobalStore>((set) => ({
@@ -22,7 +27,8 @@ export const globalStore = create<GlobalStore>((set) => ({
   selectedTimePeriod: 'Day',
   subSidebarLeftActive: false,
   currentNavLinkData: {},
-  newProductActive: false,
+  createCategoryActive: false,
+  apiResponse: {},
 }));
 
 export default globalStore;
